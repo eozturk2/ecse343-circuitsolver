@@ -44,10 +44,13 @@ while true
     normDeltaX(iterations + 1) = norm(deltaX);
     normresult = norm(func(current_guess, Vin));
     
+    % Break from loop upon success
     if normresult < tol && normDeltaX(iterations + 1) < tol
         break
     end
     
+    % Also break from loop after a certain threshold of attempts,
+    % and flag a non-convergence error
     iterations = iterations + 1;
     if iterations >= 200
         error_encountered = true;
@@ -55,6 +58,7 @@ while true
     end
 end
 
+% Deal with error flag
 if ~(error_encountered)
     Xout = current_guess;
 else
