@@ -38,8 +38,7 @@ while true
     old_guess = current_guess;
     [F,J] = func(old_guess, Vin);  
     current_guess = old_guess - J\F;
-    delta = current_guess - old_guess;
-    n = func(current_guess, Vin) - func(old_guess, Vin);
+    
     % Error measurement
     deltaX = current_guess - old_guess;
     normDeltaX(iterations + 1) = norm(deltaX);
@@ -61,14 +60,6 @@ if ~(error_encountered)
 else
     error("Newton-Raphson method failed to converge in 200 iterations.");
 end
-
-% Xguess is the initial Guess vector :
-% tol is the desired tolerance
-
-% Xout is the ouput vector
-% normDeltaX stores the norm of the deltaX at each iteration
-
-% write your code here
 
 end
 

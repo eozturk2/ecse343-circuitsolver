@@ -94,17 +94,17 @@ end
 function [Xout]  = NewtonRaphson(func,tol,Vin)
 
 % Initial guess. This was hard to pick because bridge rectifiers can be
-% used in any voltage application. We tried to choose the middle of the
-% road and picked 10V.
-Xguess = [10;10;10;10];
+% used in any voltage application. We chose initial guess of 0 to 
+% confrom to the project specifications.
+Xguess = [0;0;0;0];
 J = eye(size(Xguess,1));
 
 current_guess = Xguess;
 iterations = 0;
 error_encountered = false;
 
+% To keep the console from being flooded
 warning('off');
-
 normDeltaX = zeros(1, 250);
 
 
@@ -115,9 +115,6 @@ while true
     [F,J] = func(old_guess, Vin);
     
     current_guess = old_guess - J\F;
-    delta = current_guess - old_guess;
-
-    n = func(current_guess, Vin) - func(old_guess, Vin);
     
     % Error measurement
     deltaX = current_guess - old_guess;
@@ -140,14 +137,6 @@ if ~(error_encountered)
 else
     error("Newton-Raphson method failed to converge in 200 iterations.");
 end
-
-% Xguess is the initial Guess vector :
-% tol is the desired tolerance
-
-% Xout is the ouput vector
-% normDeltaX stores the norm of the deltaX at each iteration
-
-% write your code here
 
 end
 
