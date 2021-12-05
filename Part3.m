@@ -129,8 +129,6 @@ while true
     end
     
     iterations = iterations + 1;
-    
-    % Need to increase the max. number of iterations for Question 2f
     if iterations >= 200
         error_encountered = true;
         break

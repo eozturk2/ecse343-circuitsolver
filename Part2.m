@@ -50,8 +50,6 @@ while true
     end
     
     iterations = iterations + 1;
-    
-    % Need to increase the max. number of iterations for Question 2f
     if iterations >= 200
         error_encountered = true;
         break
@@ -132,17 +130,4 @@ gdX(3,3) =  (Is/Vt)*( exp( (X(3)- X(2) )/Vt))  + (Is/Vt)*( exp( -X(3)/Vt) );
 
 J = G+gdX;
 
-end
-
-
-
-function X = BackwardSubs(A,b)
-%Inputs:
-% A is a square matrix- 
-% b is the vector
-%Outputs: 
-% X is the output vector
-opts.LT = false;
-opts.UT = true;
-X= linsolve(A,b,opts);
 end
